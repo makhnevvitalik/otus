@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: user-init-job
+  annotations:
+    "helm.sh/hook": "post-install"
+spec:
+  template:
+    spec:
+      containers:
+      - name: user-init-job
+        image: mongo:4.2.5-bionic
+        envFrom:
+        - secretRef:
+            name: mongo-secrets
+        - configMapRef:
+            name: mongo-app-config
+        - secretRef:
+            name: mongo-app-secrets
+        command:
+          - sh
+          - "-c"
+          - |
+            mongo "mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@$MONGO_HOST:$MONGO_PORT/admin" --eval "db.getSiblingDB('$MONGO_COLLECTION').createUser({ user: '$MONGO_NAME', pwd: '$MONGO_PASS', roles: [{ role: 'readWrite', db: '$MONGO_COLLECTION' }]})"
+      restartPolicy: Never
+  backoffLimit: 3

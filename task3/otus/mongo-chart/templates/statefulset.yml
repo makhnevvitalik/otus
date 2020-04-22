@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: otus-mongo-statefulset
+spec:
+  selector:
+    matchLabels:
+      db: otus-mongo
+  serviceName: mongo-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        db: otus-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:4.2.5-bionic
+        args: ["--bind_ip_all"]
+        envFrom:
+        - secretRef:
+            name: mongo-secrets
+        ports:
+        - containerPort: 27017
+          name: mongo-port
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+        readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 64Mi
+          limit: 256Mi

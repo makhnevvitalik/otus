@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-mongo-service
+spec:
+  selector:
+    db: otus-mongo
+  type: NodePort
+  ports:
+    - port: 27017
+      targetPort: mongo-port
+      #For tests only
+      nodePort: 30000

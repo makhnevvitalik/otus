@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-app-config
+  namespace: default
+  resourceVersion: "1"
+data:
+  MONGO_HOST: otus-mongo-service
+  MONGO_PORT: "27017"
+  MONGO_COLLECTION: otus
