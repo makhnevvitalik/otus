@@ -6,5 +6,5 @@ metadata:
   resourceVersion: "1"
 data:
   MONGO_HOST: {{ .Release.Name }}-mongodb
-  MONGO_PORT: "27017"
-  MONGO_COLLECTION: otus
+  MONGO_PORT: {{ .Values.mongodb.service.port | quote}}
+  MONGO_COLLECTION: {{ .Values.mongodb.mongodbDatabase }}

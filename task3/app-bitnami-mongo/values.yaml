@@ -2,3 +2,5 @@ mongodb:
   mongodbUsername: otus
   mongodbPassword: otus
   mongodbDatabase: otus
+  service:
+    port: 27017

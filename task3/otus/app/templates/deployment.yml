@@ -16,6 +16,8 @@ spec:
       - name: otus
         image: makhnevvitalik/otus-task3:1.0.0
         envFrom:
+        - secretRef:
+            name: mongo-secrets
         - configMapRef:
             name: mongo-app-config
         - secretRef:

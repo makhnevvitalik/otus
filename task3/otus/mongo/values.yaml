@@ -1,0 +1,4 @@
+mongoHost: otus-mongo-service
+mongoPort: 27017
+initDbRoot: admin
+initDbPass: admin

@@ -1,0 +1,6 @@
+mongo:
+  mongoHost: otus-mongo-service
+  mongoPort: 27017
+mongoAppDb: otus
+mongoUser: otus
+mongoPass: otus
