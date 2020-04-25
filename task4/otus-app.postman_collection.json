@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "e3abe729-57c1-4c87-ba6c-95a3d80843b3",
+		"name": "otus-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create_random",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6d47cc4-ce88-40eb-a902-d0c1f42b29eb",
+						"exec": [
+							"var response = JSON.parse(responseBody)",
+							"pm.collectionVariables.set(\"userId\", response[\"id\"])"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/random",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Rename\",\r\n    \"middleName\": \"Rename\",\r\n    \"lastName\": \"Rename\",\r\n    \"email\": \"rename@foo.bar\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2835573d-9c59-4d8f-ae2b-9ed863001120",
+						"exec": [
+							"var response = JSON.parse(responseBody)",
+							"pm.collectionVariables.set(\"userId\", response[\"id\"])"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Иван\",\r\n    \"middleName\": \"Иванович\",\r\n    \"lastName\": \"Иванов\",\r\n    \"email\": \"ivan@foo.bar\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fe5ef196-23fc-4617-99ff-7cb670e4b257",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1b9653e5-cb9f-4b08-9f38-55f56432eed5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0a4e658e-9b5c-439b-b858-0e8f43b57fad",
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "89e7ffb3-fe41-4e30-9514-31e96af966c3",
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

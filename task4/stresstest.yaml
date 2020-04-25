@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-stresstest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-stresstest
+  template:
+    metadata:
+      labels:
+        app: otus-stresstest
+    spec:
+      containers:
+      - name: otus-stresstest
+        image: makhnevvitalik/otus-task4-bench:1.0.5
