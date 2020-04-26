@@ -1,3 +1,19 @@
+nginx-ingress:
+  controller:
+    kind: DaemonSet
+    reportNodeInternalIp: true
+    daemonset:
+      useHostPort: true
+      hostPorts:
+        http: 80
+        https: 443
+    service:
+      type: NodePort
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
 mongodb:
   mongodbRootPassword: root
   mongodbUsername: otus
@@ -15,6 +31,7 @@ prometheus-operator:
     prometheusSpec:
       serviceMonitorSelectorNilUsesHelmValues: false
       serviceMonitorNamespaceSelector: {}
+
   grafana:
     admin:
       existingSecret: grafana-login-secrets
@@ -34,19 +51,3 @@ prometheus-operator:
     grafana.ini:
       server:
         root_url: http://localhost:3000/grafana
-
-nginx-ingress:
-  controller:
-    kind: DaemonSet
-    reportNodeInternalIp: true
-    daemonset:
-      useHostPort: true
-      hostPorts:
-        http: 80
-        https: 443
-    service:
-      enabled: false
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true

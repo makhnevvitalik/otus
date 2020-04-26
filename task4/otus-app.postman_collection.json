@@ -193,6 +193,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get_metrics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{baseUrl}}/otusapp/actuator/prometheus",
+					"protocol": "http",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"otusapp",
+						"actuator",
+						"prometheus"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -219,15 +245,15 @@
 	],
 	"variable": [
 		{
-			"id": "0a4e658e-9b5c-439b-b858-0e8f43b57fad",
+			"id": "54e13e46-49fc-4225-80e2-adc76c7725fd",
 			"key": "userId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "89e7ffb3-fe41-4e30-9514-31e96af966c3",
+			"id": "454b3e93-93f0-41f5-832c-dcd3a4ec4708",
 			"key": "baseUrl",
-			"value": "",
+			"value": "arch.homework",
 			"type": "string"
 		}
 	],

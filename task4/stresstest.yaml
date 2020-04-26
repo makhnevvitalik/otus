@@ -14,4 +14,9 @@ spec:
     spec:
       containers:
       - name: otus-stresstest
-        image: makhnevvitalik/otus-task4-bench:1.0.5
+        image: makhnevvitalik/otus-task4-bench:1.0.10
+        env:
+          - name: NGINX_HOST
+            value: otus-nginx-ingress-controller
+          - name: NGINX_HOST_REPLACE
+            value: arch.homework
