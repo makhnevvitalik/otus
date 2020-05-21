@@ -35,7 +35,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "c654bbabb053b5757aab5a1d29e0e7077701a5b8",
+							"value": "67c65fec615c6c03d0cab76c8d344d9be8adb191",
 							"type": "string"
 						},
 						{
@@ -361,31 +361,31 @@
 	],
 	"variable": [
 		{
-			"id": "51840527-472a-426c-b2ba-554a26c220e3",
+			"id": "8ba1e952-bfcf-4c3c-b0f2-a17e224a448c",
 			"key": "baseUrl",
 			"value": "arch.homework",
 			"type": "string"
 		},
 		{
-			"id": "0a05fba1-363d-4618-83cc-1488673a8bc4",
+			"id": "1f20e47b-c640-493b-a6c5-0acccb16c61e",
 			"key": "lastName",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "bb39df4f-9c5e-42c1-b514-be0b4557469b",
+			"id": "eaf45c01-1750-4ae0-8c95-3449ad208e8f",
 			"key": "login",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c21c6ffd-1c61-470a-aae0-6e8219918664",
+			"id": "20deacb9-d296-4243-9aaf-1c2609231592",
 			"key": "middleName",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "72ef01ce-9d5c-4331-b256-598d060f8f7a",
+			"id": "da61c537-2ec1-4b28-af46-f26eb9472e3c",
 			"key": "firstName",
 			"value": "",
 			"type": "string"
