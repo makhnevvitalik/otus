@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-app-config
+  resourceVersion: "1"
+data:
+  MONGO_HOST: {{ .Release.Name }}-mongodb
+  MONGO_PORT: {{ .Values.mongodb.service.port | quote}}
+  MONGO_DB: {{ .Values.mongodb.mongodbDatabase }}

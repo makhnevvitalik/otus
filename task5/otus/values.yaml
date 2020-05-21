@@ -1,0 +1,72 @@
+nginx-ingress:
+  controller:
+    kind: DaemonSet
+    reportNodeInternalIp: true
+    daemonset:
+      useHostPort: true
+      hostPorts:
+        http: 80
+        https: 443
+    service:
+      type: NodePort
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+mongodb:
+  mongodbRootPassword: root
+  mongodbUsername: otus
+  mongodbPassword: otus
+  mongodbDatabase: otus
+  service:
+    port: 27017
+
+prometheus-mongodb-exporter:
+  mongodb:
+    uri: mongodb://root:root@otus-mongodb:27017
+
+prometheus-operator:
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      serviceMonitorNamespaceSelector: {}
+
+  grafana:
+    admin:
+      existingSecret: grafana-login-secrets
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/rewrite-target: /$1
+        nginx.ingress.kubernetes.io/use-regex: "true"
+      path: /grafana/?(.*)
+      hosts:
+        - arch.homework
+    sidecar:
+      dashboards:
+        enabled: true
+        label:  grafana-dashboard
+    grafana.ini:
+      server:
+        root_url: http://localhost:3000/grafana
+
+oauth2-proxy:
+  config:
+    clientID: 4092cfd8593a4a19f868
+    clientSecret: cb698dc32fe7072a1f6968261d92c497a9659a89
+    cookieSecret: R6xuJLFvO3vStPIgNpi0Sg==
+  extraArgs:
+    provider: github
+    email-domain: "*"
+    whitelist-domain: "github.com"
+    upstream: file:///dev/null
+    cookie-name: oauth2
+    set-xauthrequest: true
+  service:
+    port: 4180
+  ingress:
+    enabled: true
+    hosts: ["arch.homework"]
+    path: /oauth2
