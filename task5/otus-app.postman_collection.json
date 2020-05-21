@@ -296,11 +296,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://arch.homework/oauth2/sign_out?rd=https%3A%2F%2Fgithub.com%2Flogout",
+					"raw": "https://{{baseUrl}}/oauth2/sign_out?rd=https%3A%2F%2Fgithub.com%2Flogout",
 					"protocol": "https",
 					"host": [
-						"arch",
-						"homework"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"oauth2",
@@ -362,31 +361,31 @@
 	],
 	"variable": [
 		{
-			"id": "b99f8b3c-ec4a-41c5-a64e-93d89322c88d",
+			"id": "51840527-472a-426c-b2ba-554a26c220e3",
 			"key": "baseUrl",
 			"value": "arch.homework",
 			"type": "string"
 		},
 		{
-			"id": "a214d96c-de04-446b-9f05-a0b75a5171f4",
+			"id": "0a05fba1-363d-4618-83cc-1488673a8bc4",
 			"key": "lastName",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fc748577-3a17-47e2-8b9b-a80db5d5a7f3",
+			"id": "bb39df4f-9c5e-42c1-b514-be0b4557469b",
 			"key": "login",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "f8af79f6-2ee2-4e0c-9f87-2b6cd0df221d",
+			"id": "c21c6ffd-1c61-470a-aae0-6e8219918664",
 			"key": "middleName",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "3c53ca60-7260-4a69-8424-cfdb5f701aa2",
+			"id": "72ef01ce-9d5c-4331-b256-598d060f8f7a",
 			"key": "firstName",
 			"value": "",
 			"type": "string"
