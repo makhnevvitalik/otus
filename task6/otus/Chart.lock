@@ -1,0 +1,18 @@
+dependencies:
+- name: mongodb
+  repository: https://charts.bitnami.com/bitnami
+  version: 7.8.10
+- name: prometheus-mongodb-exporter
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.4.0
+- name: prometheus-operator
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 8.13.14
+- name: nginx-ingress
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.36.3
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.7.1
+digest: sha256:f790222e6630831dbc57455bf8353b3bac4344e9b92b391e6136d06bc603dede
+generated: "2020-06-13T14:42:24.0622376+05:00"

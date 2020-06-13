@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: app-metrics-servicemonitor
+spec:
+  selector:
+    matchLabels:
+      service: otus-app-service
+  endpoints:
+  - port: service-port
+    path: /actuator/prometheus
+    interval: 5s
