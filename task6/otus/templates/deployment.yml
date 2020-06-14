@@ -15,6 +15,9 @@ spec:
       containers:
       - name: otus
         image: {{ .Values.app.image }}
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xmx550m -XX:MaxMetaspaceSize=135m -XX:ReservedCodeCacheSize=100m -Xss256k -XX:MaxDirectMemorySize=10m"
         envFrom:
         - configMapRef:
             name: mongo-app-config
@@ -28,5 +31,9 @@ spec:
           httpGet:
             port: app-port
             path: /actuator/health
-          initialDelaySeconds: 1
-          periodSeconds: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 30
+        resources:
+          limits:
+            memory: "1024Mi"

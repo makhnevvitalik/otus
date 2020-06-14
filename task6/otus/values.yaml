@@ -61,7 +61,7 @@ redis:
       enabled: false
     resources:
       limits:
-        memory: 1Gi
+        memory: 512Mi
   password: qwerty123
   configmap: |-
     # 5242880‬ == 5Mb
@@ -70,7 +70,7 @@ redis:
     maxmemory-policy allkeys-lru
 
 app:
-  image:  makhnevvitalik/otus-task6:1.0.10
+  image:  makhnevvitalik/otus-task6:1.0.12
   cache:
-    enabled: true
+    enabled: false
     ttl: 1h

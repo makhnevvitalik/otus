@@ -10,7 +10,6 @@ data:
       "annotations": {
         "list": [
           {
-            "$$hashKey": "object:1337",
             "builtIn": 1,
             "datasource": "-- Grafana --",
             "enable": true,
@@ -24,45 +23,10 @@ data:
       "editable": true,
       "gnetId": null,
       "graphTooltip": 0,
-      "id": 25,
+      "id": 26,
       "links": [],
       "panels": [
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    10
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency 0.5 alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -103,21 +67,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.5, sum by (method, le, uri) (rate(user_requests_seconds_bucket[1m]))) * 1000",
+              "expr": "histogram_quantile(0.5, sum by (method, le, uri) (rate(product_requests_seconds_bucket[1m]))) * 1000",
               "interval": "",
               "legendFormat": "0.5 {{`{{method}}`}} {{`{{uri}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 10
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -137,7 +93,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:89",
               "decimals": null,
               "format": "ms",
               "label": null,
@@ -147,7 +102,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:90",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -162,41 +116,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    10
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "5m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -238,21 +157,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (method, uri) (rate(user_requests_seconds_count[1m]))",
+              "expr": "sum by (method, uri) (rate(product_requests_seconds_count[1m]))",
               "interval": "",
               "legendFormat": "{{`{{method}}`}} {{`{{uri}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 10
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -272,7 +183,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:73",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -281,7 +191,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:74",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -296,41 +205,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    50
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "10s",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency 0.9 alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -371,21 +245,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.9, sum by (method, le, uri) (rate(user_requests_seconds_bucket[1m]))) * 1000",
+              "expr": "histogram_quantile(0.9, sum by (method, le, uri) (rate(product_requests_seconds_bucket[1m]))) * 1000",
               "interval": "",
               "legendFormat": "0.9 {{`{{method}}`}} {{`{{uri}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 50
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -405,7 +271,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:89",
               "decimals": null,
               "format": "ms",
               "label": null,
@@ -415,7 +280,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:90",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -430,41 +294,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    10
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Error Rate alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -506,21 +335,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (status) (rate(user_requests_seconds_count{status=~\"5..\"}[1m]))",
+              "expr": "sum by (status) (rate(product_requests_seconds_count{status=~\"5.*\"}[1m]))",
               "interval": "",
               "legendFormat": "{{`{{status}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 10
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -540,7 +361,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:73",
               "decimals": null,
               "format": "short",
               "label": "",
@@ -550,7 +370,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:74",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -565,41 +384,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    120
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency 0.99 alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -640,21 +424,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.99, sum by (method, le, uri) (rate(user_requests_seconds_bucket[1m]))) * 1000",
+              "expr": "histogram_quantile(0.99, sum by (method, le, uri) (rate(product_requests_seconds_bucket[1m]))) * 1000",
               "interval": "",
               "legendFormat": " 0.99 {{`{{method}}`}} {{`{{uri}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 120
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -674,7 +450,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:89",
               "decimals": null,
               "format": "ms",
               "label": null,
@@ -684,7 +459,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:90",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -699,41 +473,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    266870912
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "App Memory alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -780,15 +519,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 266870912
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -808,7 +539,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:950",
               "format": "decbytes",
               "label": null,
               "logBase": 1,
@@ -817,7 +547,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:951",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -832,41 +561,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    3000
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency Max alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -907,21 +601,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(1, sum by (method, le, uri) (rate(user_requests_seconds_bucket[1m]))) * 1000",
+              "expr": "histogram_quantile(1, sum by (method, le, uri) (rate(product_requests_seconds_bucket[1m]))) * 1000",
               "interval": "",
               "legendFormat": "Max {{`{{method}}`}} {{`{{uri}}`}}",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 3000
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -941,7 +627,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:89",
               "decimals": null,
               "format": "ms",
               "label": null,
@@ -951,7 +636,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:90",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1006,7 +690,7 @@ data:
             "showThresholdLabels": false,
             "showThresholdMarkers": true
           },
-          "pluginVersion": "6.7.1",
+          "pluginVersion": "6.7.3",
           "targets": [
             {
               "expr": "avg(rate(container_cpu_user_seconds_total{container=\"otus\", pod=~\"otus-app-.*\"}[30s])) without (cpu) * 100",
@@ -1021,41 +705,6 @@ data:
           "type": "gauge"
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    2048
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Mongo Memory alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -1102,15 +751,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 2048
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -1130,7 +771,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:268",
               "format": "decmbytes",
               "label": null,
               "logBase": 1,
@@ -1139,7 +779,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:269",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1154,41 +793,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    3000
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Nginx Latency alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -1254,15 +858,7 @@ data:
               "refId": "D"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 3000
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -1282,7 +878,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:73",
               "format": "ms",
               "label": null,
               "logBase": 1,
@@ -1291,7 +886,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:74",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1306,41 +900,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    40
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "5m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Latency alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -1388,15 +947,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 40
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -1416,7 +967,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:73",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1425,7 +975,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:74",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1440,41 +989,6 @@ data:
           }
         },
         {
-          "alert": {
-            "alertRuleTags": {},
-            "conditions": [
-              {
-                "evaluator": {
-                  "params": [
-                    10
-                  ],
-                  "type": "gt"
-                },
-                "operator": {
-                  "type": "and"
-                },
-                "query": {
-                  "params": [
-                    "A",
-                    "1m",
-                    "now"
-                  ]
-                },
-                "reducer": {
-                  "params": [],
-                  "type": "avg"
-                },
-                "type": "query"
-              }
-            ],
-            "executionErrorState": "alerting",
-            "for": "1m",
-            "frequency": "1m",
-            "handler": 1,
-            "name": "Error Rate alert",
-            "noDataState": "no_data",
-            "notifications": []
-          },
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
@@ -1516,21 +1030,13 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (ingress) (rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress=~'otus-app-.*', status=~\"5..\"}[1m]))",
+              "expr": "sum by (ingress) (rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress=~'otus-app-.*', status=~\"5.*\"}[1m]))",
               "interval": "",
               "legendFormat": "{{`{{ingress}}`}} 5xx",
               "refId": "A"
             }
           ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": true,
-              "line": true,
-              "op": "gt",
-              "value": 10
-            }
-          ],
+          "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
@@ -1550,7 +1056,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:73",
               "decimals": null,
               "format": "short",
               "label": "",
@@ -1560,7 +1065,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:74",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1602,9 +1106,9 @@ data:
       },
       "timezone": "",
       "title": "Otus",
-      "uid": "i1HlTw3Wk",
+      "uid": "i1HlTw3Wk11",
       "variables": {
         "list": []
       },
-      "version": 5
+      "version": 2
     }
