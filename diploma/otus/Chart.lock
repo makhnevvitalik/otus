@@ -1,0 +1,27 @@
+dependencies:
+- name: mongodb
+  repository: https://charts.bitnami.com/bitnami
+  version: 7.8.10
+- name: prometheus-mongodb-exporter
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.4.0
+- name: prometheus-operator
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 8.13.14
+- name: nginx-ingress
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.36.3
+- name: oauth2-proxy
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 3.1.0
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.7.16
+- name: rabbitmq
+  repository: https://charts.bitnami.com/bitnami
+  version: 7.5.8
+- name: prometheus-rabbitmq-exporter
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.5.5
+digest: sha256:76cf8469023c5766933d8441858be5cf97a74a61c36ba70bca84e8799f104da9
+generated: "2020-08-16T12:39:45.331395+05:00"

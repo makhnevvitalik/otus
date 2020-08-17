@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-delivery-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-delivery
+  template:
+    metadata:
+      labels:
+        app: otus-delivery
+    spec:
+      containers:
+      - name: delivery
+        image: {{ .Values.delivery.image }}
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xmx128m -XX:MaxMetaspaceSize=135m -XX:ReservedCodeCacheSize=50m -Xss256k -XX:MaxDirectMemorySize=10m"
+        - name: MONGO_DB
+          value: delivery
+        envFrom:
+        - configMapRef:
+            name: mongo-app-config
+        - secretRef:
+            name: mongo-app-secrets
+        ports:
+        - containerPort: 8080
+          name: app-port
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            port: app-port
+            path: /actuator/health
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 30
+        resources:
+          limits:
+            memory: "360Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-delivery-service
+  labels:
+    service: otus-delivery-service
+spec:
+  selector:
+    app: otus-delivery
+  ports:
+    - name: service-port
+      protocol: TCP
+      port: 8080
+      targetPort: app-port

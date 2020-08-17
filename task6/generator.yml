@@ -12,7 +12,7 @@ spec:
           - name: GENERATOR_ENABLED
             value: "true"
           - name: GENERATOR_COUNT
-            value: "500000"
+            value: "1500000"
           - name: SERVER_PORT
             value: "0"
           - name: JAVA_TOOL_OPTIONS
@@ -28,7 +28,7 @@ spec:
           - name: GENERATOR_ENABLED
             value: "true"
           - name: GENERATOR_COUNT
-            value: "500000"
+            value: "1500000"
           - name: SERVER_PORT
             value: "0"
           - name: JAVA_TOOL_OPTIONS

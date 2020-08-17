@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-app-config
+  resourceVersion: "1"
+data:
+  MONGO_HOST: {{ .Release.Name }}-mongodb
+  MONGO_PORT: {{ .Values.mongodb.service.port | quote }}
+  SPRING_RABBITMQ_HOST: {{ .Release.Name }}-rabbitmq
+  REDIS_CACHE_ENABLED: {{ .Values.app.cache.enabled | quote }}
+  AUTH_ENABLED: {{ .Values.app.auth.enabled | quote }}
+  SPRING_REDIS_HOST: {{ .Release.Name }}-redis-master
+  SPRING_CACHE_REDIS_TIME_TO_LIVE: {{ .Values.app.cache.ttl }}

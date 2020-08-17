@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-warehouse-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-warehouse
+  template:
+    metadata:
+      labels:
+        app: otus-warehouse
+    spec:
+      containers:
+      - name: warehouse
+        image: {{ .Values.warehouse.image }}
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xmx256m -XX:MaxMetaspaceSize=135m -XX:ReservedCodeCacheSize=50m -Xss256k -XX:MaxDirectMemorySize=10m"
+        - name: MONGO_DB
+          value: warehouse
+        envFrom:
+        - configMapRef:
+            name: mongo-app-config
+        - secretRef:
+            name: mongo-app-secrets
+        ports:
+        - containerPort: 8080
+          name: app-port
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            port: app-port
+            path: /actuator/health
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 30
+        resources:
+          limits:
+            memory: "520Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-warehouse-service
+  labels:
+    service: otus-warehouse-service
+spec:
+  selector:
+    app: otus-warehouse
+  ports:
+    - name: service-port
+      protocol: TCP
+      port: 8080
+      targetPort: app-port

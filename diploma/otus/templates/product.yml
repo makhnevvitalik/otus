@@ -1,30 +1,33 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: otus-app-deployment
+  name: otus-product-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: otus-app
+      app: otus-product
   template:
     metadata:
       labels:
-        app: otus-app
+        app: otus-product
     spec:
       containers:
-      - name: otus
-        image: {{ .Values.app.image }}
+      - name: product
+        image: {{ .Values.product.image }}
         env:
         - name: JAVA_TOOL_OPTIONS
-          value: "-Xmx350m -XX:MaxMetaspaceSize=135m -XX:ReservedCodeCacheSize=80m -Xss256k -XX:MaxDirectMemorySize=10m"
+          value: "-Xmx256m -XX:MaxMetaspaceSize=135m -XX:ReservedCodeCacheSize=50m -Xss256k -XX:MaxDirectMemorySize=10m"
+        - name: MONGO_DB
+          value: products
         envFrom:
         - configMapRef:
             name: mongo-app-config
         - secretRef:
             name: mongo-app-secrets
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
           name: app-port
         imagePullPolicy: Always
         readinessProbe:
@@ -36,4 +39,19 @@ spec:
           timeoutSeconds: 30
         resources:
           limits:
-            memory: "800Mi"
+            memory: "520Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-product-service
+  labels:
+    service: otus-product-service
+spec:
+  selector:
+    app: otus-product
+  ports:
+    - name: service-port
+      protocol: TCP
+      port: 8080
+      targetPort: app-port

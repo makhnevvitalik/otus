@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-deployment
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin:2.19
+        env:
+          - name: JAVA_OPTS
+            value: "-Dlogging.level.zipkin=ERROR -Dlogging.level.zipkin2=ERROR -Dnetworkaddress.cache.ttl=15"
+        ports:
+        - containerPort: 9411
+          name: zipkin-api
+        readinessProbe:
+          httpGet:
+            path: "/health"
+            port: 9411
+          initialDelaySeconds: 5

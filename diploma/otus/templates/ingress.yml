@@ -1,0 +1,107 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: otus-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-Email"
+spec:
+  rules:
+   - host: arch.homework
+     http:
+      paths:
+      - path: /otusapp/(v1/orders.*)
+        backend:
+          serviceName: otus-order-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/warehouse.*)
+        backend:
+          serviceName: otus-warehouse-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/deliveries.*)
+        backend:
+          serviceName: otus-delivery-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/payments.*)
+        backend:
+          serviceName: otus-payment-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/products.*)
+        backend:
+          serviceName: otus-product-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/customers.*)
+        backend:
+          serviceName: otus-customer-service
+          servicePort: service-port
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: otus-no-auth-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+   - host: test.arch.homework
+     http:
+      paths:
+      - path: /otusapp/(v1/orders.*)
+        backend:
+          serviceName: otus-order-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/warehouse.*)
+        backend:
+          serviceName: otus-warehouse-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/deliveries.*)
+        backend:
+          serviceName: otus-delivery-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/payments.*)
+        backend:
+          serviceName: otus-payment-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/products.*)
+        backend:
+          serviceName: otus-product-service
+          servicePort: service-port
+
+      - path: /otusapp/(v1/customers.*)
+        backend:
+          serviceName: otus-customer-service
+          servicePort: service-port
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: otus-zipkin-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+   - host: arch.homework
+     http:
+      paths:
+      - path: /zipkin.*
+        backend:
+          serviceName: zipkin-service
+          servicePort: 9411

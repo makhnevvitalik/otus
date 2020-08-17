@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: otus-generator-job2
+spec:
+  template:
+    spec:
+      containers:
+      - name: otus-generator-2
+        image: makhnevvitalik/otus-warehouse:1.2.3
+        env:
+          - name: GENERATOR_ENABLED
+            value: "true"
+          - name: GENERATOR_COUNT
+            value: "100000"
+          - name: SERVER_PORT
+            value: "0"
+          - name: JAVA_TOOL_OPTIONS
+            value: "-Xmx128m"
+          - name: MONGO_DB
+            value: warehouse
+        envFrom:
+        - configMapRef:
+            name: mongo-app-config
+        - secretRef:
+            name: mongo-app-secrets
+      restartPolicy: Never
+  backoffLimit: 3

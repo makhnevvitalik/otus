@@ -1,0 +1,74 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'com.google.cloud.tools.jib' version '2.4.0'
+    id "com.google.cloud.tools.minikube" version "1.0.0-alpha.3"
+    id "io.freefair.lombok" version "5.0.0-rc6"
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+lombok {
+    config['lombok.anyconstructor.addconstructorproperties'] = 'true'
+    config['lombok.addLombokGeneratedAnnotation'] = 'true'
+}
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform(SpringBootPlugin.BOM_COORDINATES)
+    implementation platform('org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR6')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+    implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.4.2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.3.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+minikubeStart {
+    flags = ["--vm-driver=virtualbox"]
+}
+
+jib {
+    from {
+        image = 'bellsoft/liberica-openjdk-alpine:11'
+    }
+    to {
+        image = "makhnevvitalik/otus-payment"
+        auth {
+            username = System.getenv('CC_DOCKER_USERNAME')
+            password = System.getenv('CC_DOCKER_PASSWORD')
+        }
+        tags = ['1.0.1']
+    }
+}
+
+tasks['jib'].doFirst {
+    jib {
+        dockerClient {
+            environment = minikube.getDockerEnv('minikube')
+        }
+    }
+}
