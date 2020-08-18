@@ -1,0 +1,759 @@
+{
+	"info": {
+		"_postman_id": "314efd41-44ae-4f05-8cc3-bba585cd433d",
+		"name": "otus-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Search products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "320878e0-77e1-43c2-b0d7-05ef3cbb0336",
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"prod1\", response[\"content\"][0][\"id\"])\r",
+									"pm.collectionVariables.set(\"prod2\", response[\"content\"][1][\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dfc84027-5c5a-4b2e-ab23-26b67d674725",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/products/search",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"products",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c2113ee-9587-43a5-89fd-a73c2812e4ed",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "62dd7925-b266-41ff-beea-3d62a2857c4c",
+								"exec": [
+									"pm.collectionVariables.set(\"firstName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
+									"pm.collectionVariables.set(\"middleName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
+									"pm.collectionVariables.set(\"lastName\", pm.variables.replaceIn('{{$randomLastName}}'))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/products/{{prod1}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"products",
+								"{{prod1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "799ffd14-b40f-46c7-bfc6-81ebea621291",
+								"exec": [
+									"var request = JSON.parse(request.data)\r",
+									"pm.collectionVariables.set(\"address\", request[\"address\"])"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "59b5808a-2009-4267-afd7-4035925c8aa1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "c550e71eae3002c3c3f3093789f38c591c94f3c6",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Request-Email",
+								"value": "123",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Виталий\",\r\n \"phone\": \"9527256157\",\r\n \"address\": \"Екатеринбург\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/customers/current",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"customers",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "40e85b5c-8b23-42de-a689-aa97d379768b",
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"address\", response[\"address\"])"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ff53efd7-db4e-45c7-a141-30e3021840df",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "4e1818cc0f618e80042f57a8bac01e29715f2d95",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/customers/current",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"customers",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50d62998-85b4-439c-8213-c00804637359",
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"orderId\", response[\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"id\": \"{{prod1}}\",\r\n            \"count\": 5\r\n        },\r\n        {\r\n            \"id\": \"{{prod2}}\",\r\n            \"count\": 2\r\n        }\r\n    ],\r\n    \"address\": \"{{address}}\",\r\n    \"delay\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/orders",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get orders",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/orders",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/payments/{{orderId}}/pay?status=OK",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"payments",
+								"{{orderId}}",
+								"pay"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "OK"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82469cf8-898c-488f-8e78-346a9edf8ae5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/oauth2/sign_out?rd=https%3A%2F%2Fgithub.com%2Flogout",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth2",
+								"sign_out"
+							],
+							"query": [
+								{
+									"key": "rd",
+									"value": "https%3A%2F%2Fgithub.com%2Flogout"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "Get payments",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/payments",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change delivery status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/deliveries/{{orderId}}?status=REJECTED",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"deliveries",
+								"{{orderId}}"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "REJECTED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get warehouse products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/warehouse/products/search",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"warehouse",
+								"products",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get warehouse product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/warehouse/products/5f390a2b524ccc762b7d3134",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"warehouse",
+								"products",
+								"5f390a2b524ccc762b7d3134"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add warehouse product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Some product\",\r\n    \"price\": 1000,\r\n    \"count\": 1000\r\n}"
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/warehouse/products",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"warehouse",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update warehouse product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"The Little Foxes\",\r\n    \"price\": 3152,\r\n    \"count\": 25332\r\n}"
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/warehouse/products/{{prod1}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"warehouse",
+								"products",
+								"{{prod1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get warehouse reservation",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/warehouse/reservations/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"warehouse",
+								"reservations",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "17c208c079cfa1a00ff1dcfe2080a1dc4e4df3cf",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "bearer",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1d9afc78-1eb5-492d-9458-c1ff82949790",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "585738ea-f1f4-4778-b62f-9c5d63ce72f3",
+				"type": "text/javascript",
+				"exec": [
+					"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '')] = true;",
+					"tests[\"[INFO] Response: \" + responseBody] = true;"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e57312a5-a46e-47cb-a2e4-b8961d2d19dd",
+			"key": "baseUrl",
+			"value": "arch.homework"
+		},
+		{
+			"id": "40b6f7ef-2019-4fdb-ad6c-fcf063bb1e7f",
+			"key": "lastName",
+			"value": ""
+		},
+		{
+			"id": "742ea4da-6438-441c-986b-f31a822d9696",
+			"key": "login",
+			"value": ""
+		},
+		{
+			"id": "62489499-1468-4a4d-87c9-5a8cac31d7dd",
+			"key": "middleName",
+			"value": ""
+		},
+		{
+			"id": "d8ac54f6-40bb-4a65-86f3-00243fa4106e",
+			"key": "firstName",
+			"value": ""
+		},
+		{
+			"id": "03097b9c-5c29-41d2-a58e-2008f455abf4",
+			"key": "prod1",
+			"value": ""
+		},
+		{
+			"id": "e35249fa-f7bd-4d16-8647-5009d3135b36",
+			"key": "prod2",
+			"value": ""
+		},
+		{
+			"id": "9d5feb14-88ab-4129-a1eb-cd534ec712aa",
+			"key": "address",
+			"value": ""
+		},
+		{
+			"id": "28e2a052-a351-4736-a9b7-1dbfcc82bc3e",
+			"key": "orderId",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}

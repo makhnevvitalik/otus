@@ -126,4 +126,4 @@ payment:
 product:
   image: makhnevvitalik/otus-product:1.0.3
 customer:
-  image: makhnevvitalik/otus-customer:1.0.1
+  image: makhnevvitalik/otus-customer:1.0.2
