@@ -9,114 +9,6 @@
 			"name": "user",
 			"item": [
 				{
-					"name": "Search products",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "320878e0-77e1-43c2-b0d7-05ef3cbb0336",
-								"exec": [
-									"var response = JSON.parse(responseBody)\r",
-									"pm.collectionVariables.set(\"prod1\", response[\"content\"][0][\"id\"])\r",
-									"pm.collectionVariables.set(\"prod2\", response[\"content\"][1][\"id\"])"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "dfc84027-5c5a-4b2e-ab23-26b67d674725",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "https://{{baseUrl}}/otusapp/v1/products/search",
-							"protocol": "https",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"otusapp",
-								"v1",
-								"products",
-								"search"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get product",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9c2113ee-9587-43a5-89fd-a73c2812e4ed",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "62dd7925-b266-41ff-beea-3d62a2857c4c",
-								"exec": [
-									"pm.collectionVariables.set(\"firstName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
-									"pm.collectionVariables.set(\"middleName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
-									"pm.collectionVariables.set(\"lastName\", pm.variables.replaceIn('{{$randomLastName}}'))"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "https://{{baseUrl}}/otusapp/v1/products/{{prod1}}",
-							"protocol": "https",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"otusapp",
-								"v1",
-								"products",
-								"{{prod1}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create user",
 					"event": [
 						{
@@ -147,7 +39,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "c550e71eae3002c3c3f3093789f38c591c94f3c6",
+									"value": "d716f309c8f524972567fbbc71c408b6df63a6a3",
 									"type": "string"
 								},
 								{
@@ -261,6 +153,114 @@
 								"v1",
 								"customers",
 								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "320878e0-77e1-43c2-b0d7-05ef3cbb0336",
+								"exec": [
+									"var response = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"prod1\", response[\"content\"][0][\"id\"])\r",
+									"pm.collectionVariables.set(\"prod2\", response[\"content\"][1][\"id\"])"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dfc84027-5c5a-4b2e-ab23-26b67d674725",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/products/search",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"products",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c2113ee-9587-43a5-89fd-a73c2812e4ed",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "62dd7925-b266-41ff-beea-3d62a2857c4c",
+								"exec": [
+									"pm.collectionVariables.set(\"firstName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
+									"pm.collectionVariables.set(\"middleName\", pm.variables.replaceIn('{{$randomFirstName}}'))\r",
+									"pm.collectionVariables.set(\"lastName\", pm.variables.replaceIn('{{$randomLastName}}'))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/otusapp/v1/products/{{prod1}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"otusapp",
+								"v1",
+								"products",
+								"{{prod1}}"
 							]
 						}
 					},
@@ -710,47 +710,47 @@
 	],
 	"variable": [
 		{
-			"id": "e57312a5-a46e-47cb-a2e4-b8961d2d19dd",
+			"id": "c3ef9675-c12b-48b0-b16b-2f4f278c96bc",
 			"key": "baseUrl",
 			"value": "arch.homework"
 		},
 		{
-			"id": "40b6f7ef-2019-4fdb-ad6c-fcf063bb1e7f",
+			"id": "eb6713ff-24e0-4d2f-8a08-9c87877c8383",
 			"key": "lastName",
 			"value": ""
 		},
 		{
-			"id": "742ea4da-6438-441c-986b-f31a822d9696",
+			"id": "1c08df55-2a94-4e57-84cb-c6a2f1e7f7be",
 			"key": "login",
 			"value": ""
 		},
 		{
-			"id": "62489499-1468-4a4d-87c9-5a8cac31d7dd",
+			"id": "579ddb96-13cb-43e0-975a-29f0c46fa597",
 			"key": "middleName",
 			"value": ""
 		},
 		{
-			"id": "d8ac54f6-40bb-4a65-86f3-00243fa4106e",
+			"id": "6ca41388-6515-4867-87f0-d6d092295667",
 			"key": "firstName",
 			"value": ""
 		},
 		{
-			"id": "03097b9c-5c29-41d2-a58e-2008f455abf4",
+			"id": "1fdc9269-183c-4896-a14b-f3dab405a1fd",
 			"key": "prod1",
 			"value": ""
 		},
 		{
-			"id": "e35249fa-f7bd-4d16-8647-5009d3135b36",
+			"id": "1a9f4ae9-73c7-43f0-bfbf-b65d66dbbde1",
 			"key": "prod2",
 			"value": ""
 		},
 		{
-			"id": "9d5feb14-88ab-4129-a1eb-cd534ec712aa",
+			"id": "0159dba9-f033-4645-899a-d5b64d0b466f",
 			"key": "address",
 			"value": ""
 		},
 		{
-			"id": "28e2a052-a351-4736-a9b7-1dbfcc82bc3e",
+			"id": "24f08422-d867-4b21-b842-edb98f25ede0",
 			"key": "orderId",
 			"value": ""
 		}

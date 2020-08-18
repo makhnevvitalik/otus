@@ -116,14 +116,14 @@ app:
     ttl: 1h
 
 order:
-  image: makhnevvitalik/otus-order:1.0.4
+  image: makhnevvitalik/otus-order:1.0.5
 warehouse:
-  image: makhnevvitalik/otus-warehouse:1.0.1
+  image: makhnevvitalik/otus-warehouse:1.0.2
 delivery:
-  image: makhnevvitalik/otus-delivery:1.0.1
+  image: makhnevvitalik/otus-delivery:1.0.2
 payment:
-  image: makhnevvitalik/otus-payment:1.0.1
+  image: makhnevvitalik/otus-payment:1.0.2
 product:
-  image: makhnevvitalik/otus-product:1.0.3
+  image: makhnevvitalik/otus-product:1.0.4
 customer:
-  image: makhnevvitalik/otus-customer:1.0.2
+  image: makhnevvitalik/otus-customer:1.0.3
